@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "influence-filtration"
+version = "0.0.1"
+description = "Utilities for computing per-example influence scores and pruning fine-tuning datasets using bergson and kronfluence."
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["influence", "data-pruning", "nlp", "llm"]
+
+# Core runtime dependencies
+# Local libraries are referenced via absolute file URLs so that uv/pip can install them.
+dependencies = [
+  "bergson @ file:///share/u/yu.stev/influence/bergson",
+  "kronfluence @ file:///share/u/yu.stev/influence/kronfluence",
+  "torch>=2.1",
+  "transformers>=4.40",
+  "datasets>=3.6",
+  "accelerate>=0.30",
+  "matplotlib>=3.9",
+  "seaborn>=0.13",
+  "tqdm>=4.60",
+  "evaluate>=0.4.4",
+  "scikit-learn>=1.7.0",
+  "tensorboardx>=2.6.4",
+]
+
+[project.optional-dependencies]
+# Development helper tools
+dev = [
+  "pytest",
+  "ruff",
+  "pre-commit",
+]
+
+[tool.pyright]
+include = ["filter", "train"]
+reportPrivateImportUsage = false
+
+[tool.ruff]
+line-length = 120
+
+[tool.setuptools.packages.find]
+include = ["filter*"] 
