@@ -1,6 +1,6 @@
 # Ignore specific folders
 influence_cache/
-src/data/
+data/
 models/
 
 # Python
