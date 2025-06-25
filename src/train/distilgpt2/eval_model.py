@@ -23,14 +23,27 @@ def main():
     parser.add_argument("--batch_size", default=1, type=int)
     parser.add_argument("--max_length", default=512, type=int)
     parser.add_argument("--num_labels", default=2, type=int, help="Number of target classes")
+    parser.add_argument("--eval_sample_size", type=int, help="Number of examples to sample for evaluation")
+    parser.add_argument("--eval_seed", type=int, default=42, help="Random seed for evaluation sampling")
 
     args = parser.parse_args()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
+    # Set random seed for reproducibility
+    if args.eval_seed is not None:
+        torch.manual_seed(args.eval_seed)
+        
+    # Load full test dataset
     dataset = load_dataset("stanfordnlp/imdb", split="test")
     print(f"Loaded {len(dataset)} test examples")
+
+    # Sample subset if specified
+    if args.eval_sample_size:
+        dataset = dataset.shuffle(seed=args.eval_seed)
+        dataset = dataset.select(range(args.eval_sample_size))
+        print(f"Sampled {len(dataset)} examples for evaluation")
 
     tokenizer = AutoTokenizer.from_pretrained(args.checkpoint)
     if tokenizer.pad_token is None:
