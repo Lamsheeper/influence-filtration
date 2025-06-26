@@ -3,8 +3,50 @@ influence_cache/
 data/
 models/
 
-# Python
+# Experiment outputs and results
+results/
+outputs/
+experiments/results/
+experiments/outputs/
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+*.json
+*.csv
+*.tsv
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.npz
+*.npy
+
+# Model checkpoints and weights
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+
+# Logs and monitoring
+logs/
+*.log
+wandb/
+mlruns/
+tensorboard/
+tb_logs/
+
+# Cache directories
+.cache/
+*_cache/
 __pycache__/
+.pytest_cache/
+.mypy_cache/
+
+# Python
 *.py[cod]
 *$py.class
 *.so
@@ -40,4 +82,27 @@ ENV/
 
 # OS
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.#*
+
+# Configuration files with secrets
+.env.local
+.env.production
+config.local.yaml
+secrets.yaml
+
+# Large files and datasets (if not already in data/)
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.7z 

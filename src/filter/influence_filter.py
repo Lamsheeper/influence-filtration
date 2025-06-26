@@ -414,13 +414,13 @@ def main():
     )
     
     # Later, you can get different sized filtered datasets without recomputing:
-    for k in [1000, 2000, 5000]:
+    '''for k in [1000, 2000, 5000]:
         filtered_dataset = InfluenceFilter.get_top_k_from_saved(
             influence_file=influence_file,
             train_dataset=train_dataset,
             k=k
         )
-        print(f"Got filtered dataset with {k} examples")
+        print(f"Got filtered dataset with {k} examples")'''
 
 
 if __name__ == "__main__":
