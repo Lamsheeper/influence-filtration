@@ -3,20 +3,20 @@
 # Base configuration
 MODEL_NAME="distilbert/distilgpt2"
 BASE_OUTPUT_DIR="/share/u/yu.stev/influence/influence-filtration/models/distilgpt2/imdb"
-BASE_EVAL_DIR="/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb"
+BASE_EVAL_DIR="/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/stratified-eval"
 
 # Define dataset pairs (path and name)
 declare -A DATASETS=(
     # Filtered datasets
-    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/filtered-datasets/top_20000"]="top_20000"
-    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/filtered-datasets/bottom_20000"]="bottom_20000"
-    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/filtered-datasets/middle_20000"]="middle_20000"
-    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/filtered-datasets/random_20000_seed8675309"]="random_20000_seed8675309"
+    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/stratified-filter-datasets/top_support_k4000"]="top_support_k4000"
+    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/stratified-filter-datasets/bottom_support_k4000"]="bottom_support_k4000"
+    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/stratified-filter-datasets/top_opposition_k4000"]="top_opposition_k4000"
+    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/stratified-filter-datasets/bottom_opposition_k4000"]="bottom_opposition_k4000"
+    ["/share/u/yu.stev/influence/influence-filtration/data/distilgpt2/imdb/stratified-filter-datasets/random_k4000"]="random_k4000"
 )
 
 # Common training arguments
-COMMON_ARGS="
-    --model_name $MODEL_NAME \
+COMMON_ARGS="--model_name $MODEL_NAME \
     --max_steps 300 \
     --per_device_batch_size 8 \
     --gradient_accumulation_steps 4 \
@@ -27,8 +27,7 @@ COMMON_ARGS="
     --fp16 \
     --save_steps 40 \
     --eval_steps 40 \
-    --logging_steps 40
-"
+    --logging_steps 40"
 
 # Function to run training
 run_training() {
